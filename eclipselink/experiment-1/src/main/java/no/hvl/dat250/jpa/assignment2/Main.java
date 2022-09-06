@@ -16,13 +16,6 @@ public class Main {
     public static void main(String[] args) {
         factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
-        // read the existing entries and write to console
-        Query q = em.createQuery("select t from Todo t");
-        List<Todo> todoList = q.getResultList();
-        for (Todo todo : todoList) {
-            System.out.println(todo);
-        }
-        System.out.println("Size: " + todoList.size());
 
         // create new todo
         em.getTransaction().begin();
@@ -31,6 +24,15 @@ public class Main {
         todo.setDescription("This is a test");
         em.persist(todo);
         em.getTransaction().commit();
+
+        // read the existing entries and write to console
+        Query q = em.createQuery("select t from Todo t");
+        List<Todo> todoList = q.getResultList();
+        for (Todo persistedTodo : todoList) {
+            System.out.println(persistedTodo);
+        }
+        System.out.println("Size: " + todoList.size());
+
 
         em.close();
     }

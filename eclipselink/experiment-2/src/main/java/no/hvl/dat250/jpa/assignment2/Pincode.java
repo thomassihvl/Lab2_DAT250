@@ -4,21 +4,29 @@ import javax.persistence.*;
 
 @Entity
 public class Pincode {
-    @Id
+    @Override
+	public String toString() {
+		return "Pincode [id=" + id + ", pinCode=" + pinCode + ", count=" + count + "]";
+	}
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getPincode() {
-        // TODO: implement method!
-        return null;
-    }
-
-    public int getCount() {
-        // TODO: implement method!
-        return 0;
-    }
+    private String pinCode;
+    private Integer count;
+    
+	public Long getId() {
+		return id;
+	}
+	public String getPincode() {
+		return pinCode;
+	}
+	public void setPinCode(String pinCode) {
+		this.pinCode = pinCode;
+	}
+	public Integer getCount() {
+		return count;
+	}
+	public void setCount(Integer count) {
+		this.count = count;
+	}
 }
